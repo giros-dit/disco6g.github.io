@@ -53,20 +53,20 @@ ENV EXECJS_RUNTIME=Node \
 # create a directory for the jekyll site
 RUN mkdir /srv/jekyll
 
-# copy the Gemfile and Gemfile.lock to the image
-ADD Gemfile.lock /srv/jekyll
-ADD Gemfile /srv/jekyll
-
 # set the working directory
 WORKDIR /srv/jekyll
 
-# install jekyll and dependencies
-RUN gem install --no-document jekyll bundler
+# copy the Gemfile to the image
+COPY Gemfile /srv/jekyll/
+
+# install jekyll and dependencies (using bundler 2.5.16 to avoid bundler 4.x bugs)
+RUN gem install --no-document jekyll bundler:2.5.16
 RUN bundle install --no-cache
 
 EXPOSE 8080
 
 COPY bin/entry_point.sh /tmp/entry_point.sh
+RUN chmod +x /tmp/entry_point.sh
 
 # uncomment this if you are having this issue with the build:
 # /usr/local/bundle/gems/jekyll-4.3.4/lib/jekyll/site.rb:509:in `initialize': Permission denied @ rb_sysopen - /srv/jekyll/.jekyll-cache/.gitignore (Errno::EACCES)
