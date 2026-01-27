@@ -4,7 +4,7 @@ permalink: /groups/
 title: groups
 description: members of DISCO6G
 nav: true
-nav_order: 7
+nav_order: 3
 
 profiles:
   # if you want to include more than one profile, just replicate the following block
@@ -26,7 +26,7 @@ profiles:
     content: about_giros.md
     image_circular: false # crops the image to make it circular
     more_info: >
-      GIROS-UPM
+      <a href="https://www.dit.upm.es/~giros"> GIROS-UPM</a>
   - align: left
     image: logo_upm.png
     content: about_grc.md
